@@ -1,9 +1,6 @@
-
-
 <template>
   <div>
-    <h2>Authors Page</h2>
+    <h2>Books Page</h2>
     
   </div>
 </template>
-
