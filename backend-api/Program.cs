@@ -4,6 +4,16 @@ using backend_api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Config CORS
+builder.Services.AddCors(options => 
+{
+    options.AddPolicy("AllowSpecificOrigins", 
+        builder => builder.WithOrigins("http://127.0.0.1:5173")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+    );
+});
+
 // Connection to DB
 builder.Services.AddSqlServer<dbEuroContext>(builder.Configuration.GetConnectionString("cnDbEuro"));
 
@@ -26,6 +36,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Use CORS politic config
+app.UseCors("AllowSpecificOrigins");
 
 app.UseHttpsRedirection();
 
