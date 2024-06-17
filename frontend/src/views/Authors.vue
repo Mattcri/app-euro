@@ -4,7 +4,7 @@
   <div>
     <h2>Authors Page</h2>
     <div>
-      <RouterLink to="/">Back to Home</RouterLink>
+      <v-btn rounded="lg" size="large"  to="/">Back home</v-btn>
     </div>
   </div>
 </template>

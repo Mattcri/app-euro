@@ -1,51 +1,72 @@
-<script setup>
-import { ref } from 'vue'
-import { useCounterStore } from '@/store/index'
-// import { storeToRefs } from 'pinia'
-
-defineProps({
-  msg: String,
-})
-
-const store = useCounterStore()
-const increment = store.increment
-
-// const count = ref(0)
-</script>
-
 <template>
-  <h1>{{ msg }}</h1>
+  <v-container>
+    <v-row class="text-center">
+      <v-col cols="12">
+        <v-img :src="logo" class="my-3" contain height="200" />
+      </v-col>
 
-  <div>
-    <RouterLink to="/authors">Go to Authors</RouterLink>
-  </div>
+      <v-col cols="3">
+        <v-btn rounded="lg" size="large" block to="/authors">Go to authors</v-btn>
+      </v-col>
 
-  <div class="card">
-    <button type="button" @click="increment">count is {{ store.count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
-  </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank">create-vue</a>, the official Vue + Vite
-    starter
-  </p>
-  <p>
-    Install
-    <a href="https://github.com/vuejs/language-tools" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
+    </v-row>
+  </v-container>
 </template>
 
-<style scoped>
+<script>
+import logo from '../assets/logo.svg'
 
+export default {
+  name: 'HelloWorld',
 
-.read-the-docs {
-  color: #888;
+  data: () => ({
+    ecosystem: [
+      {
+        text: 'vuetify-loader',
+        href: 'https://github.com/vuetifyjs/vuetify-loader/tree/next',
+      },
+      {
+        text: 'github',
+        href: 'https://github.com/vuetifyjs/vuetify/tree/next',
+      },
+      {
+        text: 'awesome-vuetify',
+        href: 'https://github.com/vuetifyjs/awesome-vuetify',
+      },
+    ],
+    importantLinks: [
+      {
+        text: 'Chat',
+        href: 'https://community.vuetifyjs.com',
+      },
+      {
+        text: 'Made with Vuetify',
+        href: 'https://madewithvuejs.com/vuetify',
+      },
+      {
+        text: 'Twitter',
+        href: 'https://twitter.com/vuetifyjs',
+      },
+      {
+        text: 'Articles',
+        href: 'https://medium.com/vuetify',
+      },
+    ],
+    logo,
+    whatsNext: [
+      {
+        text: 'Explore components',
+        href: 'https://vuetifyjs.com',
+      },
+      {
+        text: 'Roadmap',
+        href: 'https://vuetifyjs.com/introduction/roadmap/',
+      },
+      {
+        text: 'Frequently Asked Questions',
+        href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
+      },
+    ],
+  }),
 }
-</style>
-
+</script>
