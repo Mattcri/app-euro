@@ -26,6 +26,7 @@ namespace backend_api.DTOs
   // Solo es necesario los datos a modificar
   public class BookUpdateDto
   {
+    public Guid AuthorId { get; set; }
     public required string Title { get; set; }
     public int Year { get; set; }
     public required string GenderBook { get; set; }

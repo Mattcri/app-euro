@@ -115,6 +115,7 @@ namespace backend_api.Services
         return false;
       }
 
+      book.AuthorId = bookDto.AuthorId;
       book.Title = bookDto.Title;
       book.Year = bookDto.Year;
       book.GenderBook = bookDto.GenderBook;
