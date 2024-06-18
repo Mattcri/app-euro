@@ -1,6 +1,8 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { useAuthorsStore } from '@/store/authors'
 
+const store = useAuthorsStore()
 const imgURL = 'https://eurocorp.cl/wp-content/uploads/2022/01/cropped-favicon-32x32.png'
 const drawer = ref(true)
 const rail = ref(false)
@@ -11,6 +13,10 @@ const navItems = [
   { icon: 'mdi-book-open-page-variant-outline', text: 'Libros', value: 'Libros', link: '/books'  }
 
 ]
+
+onMounted(() => {
+  store.getAuthors()
+})
 
 </script>
 
@@ -31,7 +37,9 @@ const navItems = [
           :prepend-icon="nav.icon" 
           :title="nav.text" 
           :value="nav.value" 
-          :to="nav.link">
+          :to="nav.link"
+          color="light-blue-darken-4"
+          >
         </v-list-item>
       </v-list>
     </v-navigation-drawer>

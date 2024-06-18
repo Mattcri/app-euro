@@ -7,12 +7,11 @@
         prepend-inner-icon="mdi-magnify"
         class="mx-auto" 
         density="comfortable"
-        placeholder="Buscar" 
-        style="max-width: 600px;" 
-        theme="light"
-        variant="solo" 
-        outlined 
+        style="max-width: 620px;" 
+        variant="outlined" 
+        
         @input="onInput" 
+        label="Buscar"
         hide-details="auto" />
       <!-- <p>{{ lastSearch }}</p> -->
     </v-col>

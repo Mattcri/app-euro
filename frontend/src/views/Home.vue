@@ -6,35 +6,50 @@ import Searcher from "@/components/Searcher.vue"
 const store = useAuthorsStore()
 const searchQuery = ref('')
 
-onMounted(() => {
-  store.getAuthors()
-})
-
 const searchResults = computed(() => store.searchInfo(searchQuery.value))
 const lastSearch = computed(() => store.firtsAuthors || [])
 
 </script>
 
 <template>
-  <h2 class="mb-3">Home</h2>
+  <h2 class="text-h4 mb-3">Home</h2>
   <v-divider></v-divider>
-  <p class="my-3">Ingresa una búsqueda por nombre, rut, ciudad o título del libro</p>
+  <p class="my-4">Ingresa una búsqueda por nombre, rut, ciudad o título del libro</p>
   <searcher :lastSearch="lastSearch" v-model="searchQuery" />
-  <v-divider class="my-2 my-md-6"></v-divider>
+  <v-divider class="my-3 my-md-7"></v-divider>
 
   <div v-if="searchResults.length > 0">
     <v-row>
       <v-col v-for="author in searchResults" :key="author.authorId" cols="12" md="6" lg="4" class="mb-4">
-        <v-card>
-          <v-card-title>{{ author.name }}</v-card-title>
-          <v-card-subtitle>{{ author.city }}</v-card-subtitle>
+        <v-card
+          color="blue-darken-2"
+          variant="outlined"
+          :title="author.name"
+        >
+          <template v-slot:prepend>
+              <v-icon color="blue-darken-4" icon="mdi-account-circle" size="x-large"></v-icon>
+            </template>
+          <v-card-subtitle>Ciudad: {{ author.city }}</v-card-subtitle>
+          <v-divider class="mt-3 mx-3"></v-divider>
           <v-card-text>
-            <p>RUT: {{ author.rut }}</p>
-            <p>Email: {{ author.email }}</p>
-            <p>Libros:</p>
-            <ul>
-              <li v-for="book in author.books" :key="book.bookId">{{ book.title }}</li>
-            </ul>
+            <p class="text-body-1" style="color: #000000de;"><span class="font-weight-medium">RUT:</span> {{ author.rut }}</p>
+            <p class="text-body-1" style="color: #000000de;"><span class="font-weight-medium">Email:</span> {{ author.email }}</p>
+            <p class="text-body-1 font-weight-medium" style="color: #000000de;">Libros:</p>
+            <v-list class="py-1">
+              <v-list-item 
+                v-for="book in author.books" 
+                :key="book.bookId"
+                :value="book.title"
+                color="primary"
+                rounded="lg"
+              >
+                <template v-slot:prepend>
+                  <v-icon color="blue-darken-4" icon="mdi-book-open-outline"></v-icon>
+                </template>
+                <v-list-item-title v-text="book.title"></v-list-item-title>
+              </v-list-item>
+            </v-list>
+            
           </v-card-text>
         </v-card>
       </v-col>
