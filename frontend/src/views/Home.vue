@@ -7,7 +7,6 @@ const store = useAuthorsStore()
 const searchQuery = ref('')
 
 const searchResults = computed(() => store.searchInfo(searchQuery.value))
-const lastSearch = computed(() => store.firtsAuthors || [])
 
 </script>
 
@@ -15,7 +14,7 @@ const lastSearch = computed(() => store.firtsAuthors || [])
   <h2 class="text-h4 mb-3">Home</h2>
   <v-divider></v-divider>
   <p class="my-4">Ingresa una búsqueda por nombre, rut, ciudad o título del libro</p>
-  <searcher :lastSearch="lastSearch" v-model="searchQuery" />
+  <searcher v-model="searchQuery" />
   <v-divider class="my-3 my-md-7"></v-divider>
 
   <div v-if="searchResults.length > 0">

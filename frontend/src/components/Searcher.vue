@@ -22,11 +22,6 @@
 <script setup>
 import { ref, watch } from 'vue'
 
-const props = defineProps({
-  lastSearch: { type: Array, required: true },
-  // bar: Number
-})
-
 const searchQuery = ref('')
 const emit = defineEmits(['update:modelValue'])
 

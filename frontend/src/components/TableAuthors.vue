@@ -105,7 +105,7 @@ function save() {
       
     </v-data-table>
 
-    <!-- Dialogo para editar autor -->
+    <!-- Dialog para editar autor -->
     <v-dialog v-model="dialog" max-width="500px">
       <v-card>
         <v-card-title>
@@ -114,20 +114,20 @@ function save() {
         <v-card-text>
           <p></p>
           <v-container>
-            <v-row>
-              <v-col cols="12" sm="6" md="4">
+            <v-row dense>
+              <v-col cols="12" sm="6" >
                 <v-text-field v-model="editedItem.name" label="Nombre"></v-text-field>
               </v-col>
-              <v-col cols="12" sm="6" md="4">
+              <v-col cols="12" sm="6" >
                 <v-text-field v-model="editedItem.dateOfBirth" label="Fecha de nacimiento"></v-text-field>
               </v-col>
-              <v-col cols="12" sm="6" md="4">
+              <v-col cols="12" sm="6" >
                 <v-text-field v-model="editedItem.genderSex" label="Género"></v-text-field>
               </v-col>
-              <v-col cols="12" sm="6" md="4">
+              <v-col cols="12" sm="6" >
                 <v-text-field v-model="editedItem.email" label="Email"></v-text-field>
               </v-col>
-              <v-col cols="12" sm="6" md="4">
+              <v-col cols="12" sm="6" >
                 <v-text-field v-model="editedItem.city" label="Ciudad"></v-text-field>
               </v-col>
             </v-row>

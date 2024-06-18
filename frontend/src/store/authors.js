@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 
 const URL = 'http://localhost:5299/api/authors'
 
-export const useAuthorsStore = defineStore('authors', {
+export const useAuthorsStore = defineStore('authorsStore', {
   state: () => ({
     authors: [],
   }),
@@ -85,6 +85,18 @@ export const useAuthorsStore = defineStore('authors', {
         }
       }) : []
     },
+    getNameAndIdAuthor(state) {
+      return state.authors.map(author => {
+        let name = author.name
+        let authorId = author.authorId
+
+        return {
+          name,
+          authorId
+        }
+      })
+    },
+    
     
   }
 })

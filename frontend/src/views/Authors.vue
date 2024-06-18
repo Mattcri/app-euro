@@ -45,15 +45,6 @@ function create(event) {
   }
 }
 
-function validateField(fieldName) {
-  const field = authorCreate.value[fieldName]
-  const fieldRules = rules[fieldName]
-  const errorMessage = fieldRules(field)
-  // if (errorMessage !== true) {
-  //   console.error(`${fieldName} validation error: ${errorMessage}`)
-  // }
-}
-
 function validateRut(rut) {
   if (!rut || rut.length < 9 || rut.length > 10) return false
   rut = rut.replace(/\./g, '').replace('-', '')
@@ -83,10 +74,10 @@ function validateRut(rut) {
     <v-divider class="my-3"></v-divider>
     <div class="d-flex align-center justify-space-between mb-3">
       <h3 class="text-h6">Lista de Autores registrados</h3>
-      <v-btn append-icon="mdi-account-circle" color="blue-grey-lighten-5"
+      <v-btn append-icon="mdi-plus-circle" color="blue-grey-lighten-5"
         variant="elevated" class="mr-3" @click="dialog = true">
         <template v-slot:append>
-          <v-icon color="success"></v-icon>
+          <v-icon color="success" size="large"></v-icon>
         </template>
         Crear autor
       </v-btn>
@@ -112,7 +103,6 @@ function validateRut(rut) {
                   label="Nombre*"
                   v-model="authorCreate.name"
                   :rules="[rules.required, rules.minLength(5), rules.maxLength(50)]"
-                  @blur="validateField('name')"
                   required
                 ></v-text-field>
               </v-col>
@@ -121,7 +111,6 @@ function validateRut(rut) {
                   v-model="authorCreate.email"
                   label="Email*"
                   :rules="[rules.required, rules.email]"
-                  @blur="validateField('email')"
                   required
                 ></v-text-field>
               </v-col>
@@ -130,7 +119,7 @@ function validateRut(rut) {
                   v-model="authorCreate.city"
                   label="Ciudad*"
                   :rules="[rules.minLength(4), rules.maxLength(65)]"
-                  @blur="validateField('city')"
+                  required
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
@@ -138,14 +127,16 @@ function validateRut(rut) {
                   v-model="authorCreate.rut"
                   label="Ingresar Rut*"
                   :rules="[rules.required, rules.rut]"
-                  @blur="validateField('rut')"
+                  required
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
-                <input type="date" 
+                <input 
+                  type="date"
+                  class="input-date" 
                   v-model="authorCreate.dateOfBirth"
-                  @blur="validateField('dateOfBirth')"
                   :rules="[rules.required]"
+                  required
                 >
                 
               </v-col>
@@ -154,7 +145,6 @@ function validateRut(rut) {
                   v-model="authorCreate.genderSex"
                   :items="['Masculino', 'Femenino', 'Otro']"
                   label="Gender"
-                  @blur="validateField('genderSex')"
                   :rules="[rules.required]"
                   required
                 ></v-select>
@@ -167,7 +157,7 @@ function validateRut(rut) {
         <v-divider class="my-3"></v-divider>
         <v-card-actions>
           <v-btn color="blue darken-1" text @click="closeDialog">Cancelar</v-btn>
-          <v-btn color="blue darken-1" text @click="create">Crear</v-btn>
+          <v-btn color="blue darken-1" text @click="create" :disabled="valid === true ? false : true">Crear</v-btn>
         </v-card-actions>
 
       </v-card>
@@ -175,3 +165,11 @@ function validateRut(rut) {
   </div>
 </template>
 
+<style scoped>
+.input-date {
+  width: 100%;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  padding: .9rem .5rem;
+}
+</style>
